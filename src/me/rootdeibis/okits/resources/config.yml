@@ -1,0 +1,10 @@
+settings:
+  enable-titles: true
+  enable-sounds: true
+messages:
+  prefix: "&8[&aOKits&8]"
+  recieved:
+    message: "You have received the kit"
+    title: "{kit_name}"
+    subtitle: "&dCLAIMED"
+    sound: "ENDER_DRAGON_DEAD"
