@@ -1,10 +1,16 @@
 settings:
-  enable-titles: true
   enable-sounds: true
 messages:
   prefix: "&8[&aOKits&8]"
+  kits-cmd:
+    created: "<prefix> &aYou have created the kit &d%s" 
+    modified: "<prefix> &6You have modified the kit &d%s" 
+    removed: "<prefix> &cYou have removed the kit &d%s" 
   recieved:
-    message: "You have received the kit"
-    title: "{kit_name}"
-    subtitle: "&dCLAIMED"
-    sound: "ENDER_DRAGON_DEAD"
+    message:
+      - "&7&m+----------------------+"
+      - ""
+      - "&aYou has been recieved the kit &b&n%s"
+      - ""
+      - "&7&m+----------------------+"
+    sound: "ENDERDRAGON_GROWL"
