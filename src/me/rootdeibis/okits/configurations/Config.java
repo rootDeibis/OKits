@@ -17,9 +17,25 @@ public class Config {
         return get().getBoolean("settings.enable-sounds");
     }
     
+    
     public static String getMessagesPrefix() {
         return get().getString("messages.prefix");
     }
+
+
+    public static String getCreatedMessage() {
+        return transformToString("kits-cmd.created");
+    }
+
+    public static String getModifiedMessage() {
+        return transformToString("kits-cmd.modified");
+    }
+
+
+    public static String getRemovedMessage() {
+        return transformToString("kits-cmd.removed");
+    }
+
 
     public static String getRecievedMessage() {
         return transformToString("messages.recieved.message");

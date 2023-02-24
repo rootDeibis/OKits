@@ -8,17 +8,17 @@ import me.rootdeibis.mirandalib.managers.commands.MirandaCommand;
 import me.rootdeibis.okits.configurations.Config;
 import me.rootdeibis.okits.configurations.MessageUtils;
 import me.rootdeibis.okits.kits.Kit;
-import me.rootdeibis.okits.kits.KitCreator;
+import me.rootdeibis.okits.kits.KitManager;
 
-public class OKitsComamnds extends MirandaCommand{
+public class OKDCommand extends MirandaCommand{
 
-    public OKitsComamnds() {
+    public OKDCommand() {
         super("okitsadmin", "OKits Manager", "okd");
     }
 
     @Override
     public boolean handle(CommandSender sender, MirandaCommand command, String label, String[] args) {
-
+        
 
         if(sender instanceof ConsoleCommandSender) {
 
@@ -36,12 +36,12 @@ public class OKitsComamnds extends MirandaCommand{
                         String kitName = args[1];
 
                        
-                        if(!KitCreator.kits.has(kit -> kit.getName().equalsIgnoreCase(kitName))) {
+                        if(!KitManager.getKits().has(kit -> kit.getName().equalsIgnoreCase(kitName))) {
 
-                            Kit kit = KitCreator.createUsingPlayerInventory(kitName, player);
+                            Kit kit = KitManager.createFromInv(kitName, player.getInventory());
 
 
-                            KitCreator.saveKit(kit);
+                            kit.save();
 
                             MessageUtils.sendTo(sender, "%s &aKit %s created", Config.getMessagesPrefix(), kitName);
                             
@@ -66,9 +66,9 @@ public class OKitsComamnds extends MirandaCommand{
                         String kitName = args[1];
 
 
-                        if(KitCreator.kits.has(kit -> kit.getName().equalsIgnoreCase(kitName))) {
+                        if(KitManager.getKits().has(kit -> kit.getName().equalsIgnoreCase(kitName))) {
 
-                            Kit kit = KitCreator.kits.find(k -> k.getName().equalsIgnoreCase(kitName));
+                            Kit kit = KitManager.getKits().find(k -> k.getName().equalsIgnoreCase(kitName));
 
                             
 

@@ -6,8 +6,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.rootdeibis.mirandalib.managers.commands.CommandManager;
 import me.rootdeibis.mirandalib.managers.configuration.FileManager;
 import me.rootdeibis.mirandalib.utils.Logger;
-import me.rootdeibis.okits.commands.OKitsComamnds;
+import me.rootdeibis.okits.commands.OKDCommand;
 import me.rootdeibis.okits.configurations.Config;
+import me.rootdeibis.okits.kits.KitManager;
 
 public class Main extends JavaPlugin {
 
@@ -26,7 +27,7 @@ public class Main extends JavaPlugin {
         fileManager.dir("kits");
         
 
-        CommandManager.register(new OKitsComamnds());
+        CommandManager.register(new OKDCommand());
 
 
         Config.ConfigPlacelholders.register("prefix", Config.getMessagesPrefix());
@@ -38,6 +39,8 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {        
         Logger.info("&a[OKits] v%s by &dgithub.com/rootDeibis", this.getDescription().getVersion());
+
+        KitManager.loadKitsFromDirectory();
     }
 
     @Override

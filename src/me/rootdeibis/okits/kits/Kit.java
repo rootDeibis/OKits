@@ -1,5 +1,6 @@
 package me.rootdeibis.okits.kits;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Sound;
@@ -16,13 +17,19 @@ import me.rootdeibis.okits.configurations.MessageUtils;
 public class Kit {
 
     private final String name;
-    private final List<String> description;
+    private List<String> description = new ArrayList<>();
 
     private final Cache<ItemStack> items = new Cache<>();
 
     public Kit(String kitName, List<String> kitDescription) {
         this.name = kitName;
         this.description = kitDescription;
+    }
+
+
+    public Kit(String kitName, String description) {
+        this.name = kitName;
+        this.description.add(description);
     }
 
 
@@ -41,6 +48,16 @@ public class Kit {
 
     public List<String> getDescription() {
         return description;
+    }
+
+
+    public Cache<ItemStack> getItems() {
+        return items;
+    }
+
+
+    public void save() {
+        
     }
 
     public void give(Player player) {
