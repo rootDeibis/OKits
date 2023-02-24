@@ -12,6 +12,7 @@ import me.rootdeibis.mirandalib.utils.Cache;
 import me.rootdeibis.mirandalib.utils.Logger;
 import me.rootdeibis.okits.configurations.Config;
 import me.rootdeibis.okits.configurations.MessageUtils;
+import me.rootdeibis.okits.kits.serializer.KitSerializer;
 
 
 public class Kit {
@@ -57,6 +58,9 @@ public class Kit {
 
 
     public void save() {
+
+        KitSerializer.serialize(this);
+        KitManager.getKits().add(this);
         
     }
 

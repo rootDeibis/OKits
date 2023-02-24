@@ -24,18 +24,27 @@ public class Config {
 
 
     public static String getCreatedMessage() {
-        return transformToString("kits-cmd.created");
+        return transformToString("messages.kits-cmd.created");
     }
 
     public static String getModifiedMessage() {
-        return transformToString("kits-cmd.modified");
+        return transformToString("messages.kits-cmd.modified");
     }
 
 
     public static String getRemovedMessage() {
-        return transformToString("kits-cmd.removed");
+        return transformToString("messages.kits-cmd.removed");
     }
 
+
+    public static String getAlreadyExistMessage() {
+        return transformToString("messages.kits-cmd.alreadyExist");
+    }
+
+
+    public static String getDoesNotExistMessage() {
+        return transformToString("messages.kits-cmd.doesNotExist");
+    }
 
     public static String getRecievedMessage() {
         return transformToString("messages.recieved.message");
@@ -43,6 +52,10 @@ public class Config {
 
     public static String getRecievedSound() {
         return get().getString("messages.recieved.sound");
+    }
+
+    public static String getEditorGUITitle() {
+        return get().getString("editor-gui.title");
     }
 
     private static String transformToString(String path) {

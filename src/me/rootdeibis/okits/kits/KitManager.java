@@ -1,6 +1,7 @@
 package me.rootdeibis.okits.kits;
 
 
+import java.io.File;
 import java.util.stream.Collectors;
 
 import org.bukkit.inventory.Inventory;
@@ -34,6 +35,17 @@ public class KitManager {
         }
 
         return kit;
+    }
+
+    public static void remove(String name) {
+        File file = new File(Main.getPlugin().getDataFolder(), "kits/" + name + ".yml");
+
+        if(file.exists()) {
+            file.delete();
+        }
+
+
+        kits.remove(kit -> kit.getName().equalsIgnoreCase(name));
     }
 
     public static void loadKitsFromDirectory() {

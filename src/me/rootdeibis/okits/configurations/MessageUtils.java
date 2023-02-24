@@ -18,7 +18,7 @@ public class MessageUtils {
     }
 
     public static void sendTo(CommandSender sender, String message, PlaceholderFormat placeholders, String... params) {
-        sender.sendMessage(ColorUtils.parse(placeholders.parse(PlaceholderFormat.parseParams(message, params))));
+       sendTo(sender, PlaceholderFormat.parseParams(message, params), placeholders);
     }
     
 }
