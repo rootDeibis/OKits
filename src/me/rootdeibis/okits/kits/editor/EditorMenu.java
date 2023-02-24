@@ -1,5 +1,6 @@
 package me.rootdeibis.okits.kits.editor;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -13,8 +14,6 @@ import me.rootdeibis.okits.configurations.MessageUtils;
 import me.rootdeibis.okits.kits.KitManager;
 
 public class EditorMenu {
-
-
 
     private final String kitName;
     private GUIMenu menu;
@@ -39,8 +38,6 @@ public class EditorMenu {
 
         menu.setEditable(true);
 
-        GUIButton saveButton = new GUIButton(52);
-
 
         if(items.all().size() != 0) {
             for (ItemStack item : items.all()) {
@@ -48,7 +45,18 @@ public class EditorMenu {
             }
         }
 
-        saveButton.setDisplayName("&aSave Kit");
+        
+
+        menu.addButton(createSaveButton());
+    }
+
+    private GUIButton createSaveButton() {
+        GUIButton saveButton = new GUIButton(52);
+
+        saveButton.setMaterial(Material.matchMaterial("WOOL"));
+        saveButton.setMaterialData((byte) 5);
+        saveButton.setDisplayName(Config.getEditorSaveBtnDisplayName());
+        saveButton.setLore(Config.getEditorSaveBtnLore());
 
         saveButton.onClick(e -> {
             e.getWhoClicked().closeInventory();
@@ -60,12 +68,12 @@ public class EditorMenu {
 
         });
 
-        menu.addButton(saveButton);
+        return saveButton;
     }
+
 
     private void saveKit() {
         KitManager.createFromInv(kitName,  this.menu.getInventory()).save();
-
     }
 
     public void open(Player player) {

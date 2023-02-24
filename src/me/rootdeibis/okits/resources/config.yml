@@ -18,3 +18,9 @@ messages:
     sound: "ENDERDRAGON_GROWL"
 editor-gui:
   title: "&6Editing %s kit"
+  save-button:
+    displayname: "&aSave kit"
+    lore:
+      - "&7Click here to save kit"
+      - ""
+      - "&cTo cancel save press escape key"

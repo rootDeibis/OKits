@@ -1,5 +1,7 @@
 package me.rootdeibis.okits.configurations;
 
+import java.util.List;
+
 import me.rootdeibis.mirandalib.managers.configuration.IFile;
 import me.rootdeibis.mirandalib.utils.PlaceholderFormat;
 import me.rootdeibis.okits.Main;
@@ -56,6 +58,14 @@ public class Config {
 
     public static String getEditorGUITitle() {
         return get().getString("editor-gui.title");
+    }
+
+    public static String getEditorSaveBtnDisplayName() {
+        return get().getString("editor-gui.save-button.displayname");
+    }
+
+    public static List<String> getEditorSaveBtnLore() {
+        return get().getStringList("editor-gui.save-button.lore");
     }
 
     private static String transformToString(String path) {
