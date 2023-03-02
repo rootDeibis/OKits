@@ -2,6 +2,7 @@ package me.rootdeibis.okits.kits;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -19,12 +20,24 @@ public class Kit {
 
     private final String name;
     private List<String> description = new ArrayList<>();
+    private String frozen_time_format = "1h";
 
     private final Cache<ItemStack> items = new Cache<>();
+
+    private UUID kitUUID;
 
     public Kit(String kitName, List<String> kitDescription) {
         this.name = kitName;
         this.description = kitDescription;
+
+        kitUUID = UUID.randomUUID();
+    }
+
+    public Kit(String kitName, List<String> kitDescription, String uuid) {
+        this.name = kitName;
+        this.description = kitDescription;
+
+        kitUUID = UUID.fromString(uuid);
     }
 
 
@@ -49,6 +62,15 @@ public class Kit {
 
     public List<String> getDescription() {
         return description;
+    }
+
+
+    public void setFrozenTimeFormat(String format) {
+        frozen_time_format = format;
+    }
+
+    public String getFrozenTimeFormat() {
+        return frozen_time_format;
     }
 
 
@@ -105,6 +127,10 @@ public class Kit {
 
 
         return availableSlots > 0;
+    }
+
+    public UUID getKitUUID() {
+        return kitUUID;
     }
     
 }

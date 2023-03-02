@@ -27,6 +27,8 @@ public class KitSerializer {
 
             YamlConfiguration config = new YamlConfiguration();
 
+
+            config.set("uuid", kit.getKitUUID().toString());
             
             config.set("name", kit.getName());
             config.set("description", kit.getDescription());
@@ -44,7 +46,7 @@ public class KitSerializer {
 
 
     public static Kit deserealize(FileConfiguration config) {
-        Kit kit = new Kit(config.getString("name"), config.getStringList("description"));
+        Kit kit = new Kit(config.getString("name"), config.getStringList("description"), config.getString("uuid"));
 
 
         for (ItemStack decodedItem : decodeItems(config.getStringList("encoded-items"))) {
