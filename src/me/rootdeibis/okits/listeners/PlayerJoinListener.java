@@ -4,13 +4,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import me.rootdeibis.okits.kits.player.PlayerKit;
+import me.rootdeibis.okits.kits.player.PlayerKitManager;
 
 public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-        PlayerKit playerKit = new PlayerKit(e.getPlayer().getUniqueId());
+        PlayerKitManager.loadIfNotExists(e.getPlayer().getUniqueId());
 
     } 
     

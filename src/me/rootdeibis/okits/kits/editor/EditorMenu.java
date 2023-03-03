@@ -1,5 +1,8 @@
 package me.rootdeibis.okits.kits.editor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,6 +21,8 @@ public class EditorMenu {
     private final String kitName;
     private GUIMenu menu;
     private Cache<ItemStack> items = new Cache<>();
+
+    private String FROZEN_TIME = "1h";
 
     public EditorMenu(String kitName, Cache<ItemStack> items) {
         this.kitName = kitName;
@@ -47,28 +52,52 @@ public class EditorMenu {
 
         
 
-        menu.addButton(createSaveButton());
+        createActionsButons(menu);
     }
 
-    private GUIButton createSaveButton() {
+    private void createActionsButons(GUIMenu menu) {
         GUIButton saveButton = new GUIButton(52);
+        GUIButton cancelButton = new GUIButton(53);
+        GUIButton infoButton = new GUIButton(45);
 
         saveButton.setMaterial(Material.matchMaterial("WOOL"));
         saveButton.setMaterialData((byte) 5);
         saveButton.setDisplayName(Config.getEditorSaveBtnDisplayName());
         saveButton.setLore(Config.getEditorSaveBtnLore());
 
+        cancelButton.setMaterial(Material.matchMaterial("BARRIER"));
+        cancelButton.setDisplayName(Config.getEditorCancelBtnDisplayName());
+        cancelButton.setLore(Config.getEditorCancelBtnLore());
+
+        infoButton.setMaterial(Material.matchMaterial("PAPER"));
+
+        infoButton.setDisplayName("&eKit Information");
+
+
+        List<String> information = new ArrayList<>();
+
+        information.add("");
+        information.add("&6Name: &f" + this.kitName);
+        information.add("&6Frozen Time:" + this.FROZEN_TIME);
+
+        infoButton.setLore(information);
         saveButton.onClick(e -> {
             e.getWhoClicked().closeInventory();
 
-            menu.removeButton(btn -> true);
+            menu.removeButtons();
             this.saveKit();
 
             MessageUtils.sendTo(e.getWhoClicked(), Config.getCreatedMessage(), Config.ConfigPlacelholders, kitName);
 
         });
 
-        return saveButton;
+        cancelButton.onClick(e -> {
+            e.getWhoClicked().closeInventory();
+        });
+
+        menu.addButton(cancelButton);
+        menu.addButton(saveButton);
+        menu.addButton(infoButton);
     }
 
 

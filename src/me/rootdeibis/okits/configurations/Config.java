@@ -56,6 +56,14 @@ public class Config {
         return get().getString("messages.recieved.sound");
     }
 
+    public static String getFrozenMessage() {
+        return transformToString("messages.frozen.message");
+    }
+
+    public static String getFrozenSound() {
+        return get().getString("messages.frozen.sound");
+    }
+
     public static String getEditorGUITitle() {
         return get().getString("editor-gui.title");
     }
@@ -66,6 +74,14 @@ public class Config {
 
     public static List<String> getEditorSaveBtnLore() {
         return get().getStringList("editor-gui.save-button.lore");
+    }
+
+    public static String getEditorCancelBtnDisplayName() {
+        return get().getString("editor-gui.cancel-button.displayname");
+    }
+
+    public static List<String> getEditorCancelBtnLore() {
+        return get().getStringList("editor-gui.cancel-button.lore");
     }
 
     private static String transformToString(String path) {

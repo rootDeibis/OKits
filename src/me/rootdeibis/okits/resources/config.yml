@@ -16,11 +16,15 @@ messages:
       - ""
       - "&7&m+----------------------+"
     sound: "ENDERDRAGON_GROWL"
+  frozen: 
+    message: "<prefix> &7You cannot claim this kit yet, you must wait &c%s&7."
 editor-gui:
   title: "&6Editing %s kit"
   save-button:
     displayname: "&aSave kit"
     lore:
       - "&7Click here to save kit"
-      - ""
-      - "&cTo cancel save press escape key"
+  cancel-button:
+    displayname: "&cCancel"
+    lore:
+      - "&7Click here to cancel"

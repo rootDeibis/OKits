@@ -49,19 +49,34 @@ public class PlayerKit {
                 }
             }
 
-            config.save(this.file);
+            this.save();
+
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
 
+    public void edit(UUID kitUUID, long value) {
+       kits.put(kitUUID, value);
+    }
 
-
+    public void save() {
+        try {
+            this.config.save(this.file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean playerFileExists() {
         return this.getPlayerFile().exists();
+    }
+
+    public boolean available(UUID uuid) {
+        return new Date(this.kits.get(uuid)).before(new Date());
     }
 
     public File getPlayerFile() {
@@ -71,4 +86,9 @@ public class PlayerKit {
     public FileConfiguration getPlayerConfig() {
         return this.config;
     }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
 }

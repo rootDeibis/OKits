@@ -11,6 +11,7 @@ import me.rootdeibis.mirandalib.utils.guifactory.GUIListenerEvent;
 import me.rootdeibis.okits.commands.OKDCommand;
 import me.rootdeibis.okits.configurations.Config;
 import me.rootdeibis.okits.kits.KitManager;
+import me.rootdeibis.okits.listeners.PlayerJoinListener;
 
 public class Main extends JavaPlugin {
 
@@ -27,6 +28,7 @@ public class Main extends JavaPlugin {
         fileManager.Export("config.yml");
 
         fileManager.dir("kits");
+        fileManager.dir("players");
         
 
         CommandManager.register(new OKDCommand());
@@ -38,6 +40,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {        
         Bukkit.getPluginManager().registerEvents(new GUIListenerEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
 
         
         Logger.info("&a[OKits] v%s by &dgithub.com/rootDeibis", this.getDescription().getVersion());

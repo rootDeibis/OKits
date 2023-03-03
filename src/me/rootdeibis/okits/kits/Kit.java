@@ -13,6 +13,8 @@ import me.rootdeibis.mirandalib.utils.Cache;
 import me.rootdeibis.mirandalib.utils.Logger;
 import me.rootdeibis.okits.configurations.Config;
 import me.rootdeibis.okits.configurations.MessageUtils;
+import me.rootdeibis.okits.kits.player.PlayerKit;
+import me.rootdeibis.okits.kits.player.PlayerKitManager;
 import me.rootdeibis.okits.kits.serializer.KitSerializer;
 
 
@@ -44,6 +46,8 @@ public class Kit {
     public Kit(String kitName, String description) {
         this.name = kitName;
         this.description.add(description);
+
+        kitUUID = UUID.randomUUID();
     }
 
 
@@ -84,13 +88,22 @@ public class Kit {
         KitSerializer.serialize(this);
         KitManager.getKits().add(this);
         
+        PlayerKitManager.reload();
+        
     }
 
     public void give(Player player) {
+        PlayerKit pk = PlayerKitManager.getPlayers().find(p -> p.getUuid() == player.getUniqueId());
+
+        if(!pk.available(this.getKitUUID())) {
+
+            MessageUtils.sendTo(player, Config.getFrozenMessage(), Config.ConfigPlacelholders, this.name);
+
+            return;
+        }
+
 
         Inventory playerInv = player.getInventory();
-
-
 
         for(ItemStack item : items.all()){
 
@@ -99,10 +112,19 @@ public class Kit {
             } else {
                 player.getLocation().getWorld().dropItem(player.getLocation(), item);
             }
-
         }
 
+    
+
         MessageUtils.sendTo(player, Config.getRecievedMessage(), Config.ConfigPlacelholders, this.name);
+
+        if(this.getFrozenTimeFormat() != null || this.getFrozenTimeFormat().length() > 0) {
+           
+
+            pk.edit(this.getKitUUID(), TimeTool.addToDate(this.getFrozenTimeFormat()).getTime());
+
+            pk.save();
+        }
 
         try {
             Sound sound = Sound.valueOf(Config.getRecievedSound());
