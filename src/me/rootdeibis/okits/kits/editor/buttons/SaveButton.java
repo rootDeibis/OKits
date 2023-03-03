@@ -1,5 +1,6 @@
 package me.rootdeibis.okits.kits.editor.buttons;
 
+import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import me.rootdeibis.mirandalib.utils.ColorUtils;
@@ -18,6 +19,8 @@ public class SaveButton extends GUIButton {
 
         this.from = from;
 
+        this.setMaterial(Material.matchMaterial("WOOL"));
+        this.setMaterialData((byte)5);
         this.setDisplayName();
         this.setLore();
         

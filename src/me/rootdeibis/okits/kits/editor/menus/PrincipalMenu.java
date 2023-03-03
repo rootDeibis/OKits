@@ -7,6 +7,7 @@ import me.rootdeibis.mirandalib.utils.ColorUtils;
 import me.rootdeibis.mirandalib.utils.PlaceholderFormat;
 import me.rootdeibis.mirandalib.utils.guifactory.GUIMenu;
 import me.rootdeibis.okits.configurations.Config;
+import me.rootdeibis.okits.kits.editor.buttons.CancelButton;
 import me.rootdeibis.okits.kits.editor.buttons.SaveButton;
 
 public class PrincipalMenu extends GUIMenu {
@@ -16,7 +17,9 @@ public class PrincipalMenu extends GUIMenu {
     private Cache<ItemStack> items = new Cache<>();
 
     public PrincipalMenu(String kitName) {
-        super(PrincipalMenu.getFormatedTitle(), 6);
+        super(PrincipalMenu.getFormatedTitle(kitName), 6);
+
+        this.setEditable(true);
 
         this.kitName = kitName;
 
@@ -25,7 +28,9 @@ public class PrincipalMenu extends GUIMenu {
     }
 
     public PrincipalMenu(String kitName, Cache<ItemStack> items) {
-        super(PrincipalMenu.getFormatedTitle(), 6);
+        super(PrincipalMenu.getFormatedTitle(kitName), 6);
+
+        this.setEditable(true);
 
         this.kitName = kitName;
         this.items = items;
@@ -40,6 +45,7 @@ public class PrincipalMenu extends GUIMenu {
 
     private void loadButtons() {
         this.addButton(new SaveButton(this));
+        this.addButton(new CancelButton());
     }
 
     public String getKitName() {
@@ -50,8 +56,8 @@ public class PrincipalMenu extends GUIMenu {
         return items;
     }
 
-    private static String getFormatedTitle() {
-        return ColorUtils.parse(PlaceholderFormat.parseParams(Config.getEditorGUITitle()));
+    private static String getFormatedTitle(String kit) {
+        return ColorUtils.parse(PlaceholderFormat.parseParams(Config.getEditorGUITitle(), kit));
     }
 
 
