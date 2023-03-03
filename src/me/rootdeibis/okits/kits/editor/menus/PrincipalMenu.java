@@ -1,8 +1,10 @@
 package me.rootdeibis.okits.kits.editor.menus;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.inventory.ItemStack;
 
-import me.rootdeibis.mirandalib.utils.Cache;
 import me.rootdeibis.mirandalib.utils.ColorUtils;
 import me.rootdeibis.mirandalib.utils.PlaceholderFormat;
 import me.rootdeibis.mirandalib.utils.guifactory.GUIMenu;
@@ -14,7 +16,7 @@ public class PrincipalMenu extends GUIMenu {
 
     private final String kitName;
 
-    private Cache<ItemStack> items = new Cache<>();
+    private List<ItemStack> items = new ArrayList<>();
 
     public PrincipalMenu(String kitName) {
         super(PrincipalMenu.getFormatedTitle(kitName), 6);
@@ -27,7 +29,7 @@ public class PrincipalMenu extends GUIMenu {
         
     }
 
-    public PrincipalMenu(String kitName, Cache<ItemStack> items) {
+    public PrincipalMenu(String kitName, List<ItemStack> items) {
         super(PrincipalMenu.getFormatedTitle(kitName), 6);
 
         this.setEditable(true);
@@ -35,7 +37,7 @@ public class PrincipalMenu extends GUIMenu {
         this.kitName = kitName;
         this.items = items;
 
-        items.all().forEach(item -> this.getInventory().addItem(item));
+        items.forEach(item -> this.getInventory().addItem(item));
 
 
         this.loadButtons();
@@ -52,7 +54,7 @@ public class PrincipalMenu extends GUIMenu {
         return kitName;
     }
 
-    public Cache<ItemStack> getItems() {
+    public List<ItemStack> getItems() {
         return items;
     }
 

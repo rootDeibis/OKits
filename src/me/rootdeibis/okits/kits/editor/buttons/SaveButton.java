@@ -1,12 +1,17 @@
 package me.rootdeibis.okits.kits.editor.buttons;
 
+import java.util.function.Predicate;
+
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
 
 import me.rootdeibis.mirandalib.utils.ColorUtils;
 import me.rootdeibis.mirandalib.utils.Functions;
 import me.rootdeibis.mirandalib.utils.guifactory.GUIButton;
 import me.rootdeibis.okits.configurations.Config;
+import me.rootdeibis.okits.configurations.MessageUtils;
+import me.rootdeibis.okits.kits.Kit;
 import me.rootdeibis.okits.kits.KitManager;
 import me.rootdeibis.okits.kits.editor.menus.PrincipalMenu;
 
@@ -43,10 +48,27 @@ public class SaveButton extends GUIButton {
     private Functions.Function<InventoryClickEvent> onclick() {
         return (e) -> {
 
-            this.from.removeButtons();
+          this.from.removeButtons();
 
-            KitManager.createFromInv(this.from.getKitName(), this.from.getInventory());
+          Predicate<Kit> predication = kt -> kt.getName().equalsIgnoreCase(this.from.getKitName());
 
+          Kit kit = KitManager.getKits().has(predication) ? KitManager.getKits().find(predication) : KitManager.create(this.from.getKitName());
+
+          kit.getItems().clear();
+
+          for (ItemStack item : this.from.getInventory().getContents()) {
+            if(item != null) {
+                kit.addItem(item);
+            }
+          }
+        
+
+        
+          e.getWhoClicked().closeInventory();
+
+          kit.save();
+
+          MessageUtils.sendTo(e.getWhoClicked(), Config.getCreatedMessage(), Config.ConfigPlacelholders, this.from.getKitName());
         };
     }
 

@@ -37,6 +37,10 @@ public class KitManager {
         return kit;
     }
 
+    public static Kit create(String name) {
+        return  new Kit(name, "No description available");
+    }
+
     public static void remove(String name) {
         File file = new File(Main.getPlugin().getDataFolder(), "kits/" + name + ".yml");
 

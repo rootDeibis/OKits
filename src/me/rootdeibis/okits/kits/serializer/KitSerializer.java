@@ -60,7 +60,7 @@ public class KitSerializer {
     public static List<String> encodeItems(Kit kit) {
         List<String> encodeds = new ArrayList<>();
 
-        for(ItemStack item : kit.getItems().all()) {
+        for(ItemStack item : kit.getItems()) {
 
             try {
                 ByteArrayOutputStream io = new ByteArrayOutputStream();

@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import me.rootdeibis.mirandalib.utils.Cache;
 import me.rootdeibis.mirandalib.utils.Logger;
 import me.rootdeibis.okits.configurations.Config;
 import me.rootdeibis.okits.configurations.MessageUtils;
@@ -24,7 +23,7 @@ public class Kit {
     private List<String> description = new ArrayList<>();
     private String frozen_time_format = "1h";
 
-    private final Cache<ItemStack> items = new Cache<>();
+    private final List<ItemStack> items = new ArrayList<ItemStack>();
 
     private UUID kitUUID;
 
@@ -52,11 +51,11 @@ public class Kit {
 
 
     public void addItem(ItemStack item) {
-        items.add(item);
+        this.items.add(item);
     }
 
     public void remove(ItemStack itemStack) {
-        this.items.remove(i -> i == itemStack);
+        this.items.remove(itemStack);
     }
 
 
@@ -78,7 +77,7 @@ public class Kit {
     }
 
 
-    public Cache<ItemStack> getItems() {
+    public List<ItemStack> getItems() {
         return items;
     }
 
@@ -105,7 +104,7 @@ public class Kit {
 
         Inventory playerInv = player.getInventory();
 
-        for(ItemStack item : items.all()){
+        for(ItemStack item : items){
 
             if(isAvailableSlots(playerInv)) {
                 playerInv.addItem(item);
