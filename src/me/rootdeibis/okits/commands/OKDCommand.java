@@ -8,7 +8,7 @@ import me.rootdeibis.mirandalib.managers.commands.MirandaCommand;
 import me.rootdeibis.okits.configurations.Config;
 import me.rootdeibis.okits.configurations.MessageUtils;
 import me.rootdeibis.okits.kits.KitManager;
-import me.rootdeibis.okits.kits.editor.EditorMenu;
+import me.rootdeibis.okits.kits.editor.menus.PrincipalMenu;
 
 public class OKDCommand extends MirandaCommand{
 
@@ -38,7 +38,7 @@ public class OKDCommand extends MirandaCommand{
                        
                         if(!KitManager.getKits().has(kit -> kit.getName().equalsIgnoreCase(kitName))) {
 
-                            new EditorMenu(kitName).open(player);
+                            new PrincipalMenu(kitName).open(player);
 
                             
 
@@ -64,7 +64,7 @@ public class OKDCommand extends MirandaCommand{
 
                         if(KitManager.getKits().has(kit -> kit.getName().equalsIgnoreCase(kitName))) {
 
-                            new EditorMenu(kitName, KitManager.getKits().find(kit -> kit.getName().equalsIgnoreCase(kitName)).getItems()).open(player);
+                            new PrincipalMenu(kitName, KitManager.getKits().find(kit -> kit.getName().equalsIgnoreCase(kitName)).getItems()).open(player);
                             
                         } else {
                             MessageUtils.sendTo(sender, Config.getDoesNotExistMessage(),Config.ConfigPlacelholders, kitName);
