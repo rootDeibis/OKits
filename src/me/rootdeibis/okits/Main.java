@@ -46,6 +46,7 @@ public class Main extends JavaPlugin {
         Logger.info("&a[OKits] v%s by &dgithub.com/rootDeibis", this.getDescription().getVersion());
         Config.ConfigPlacelholders.register("prefix", Config.getMessagesPrefix());
         KitManager.loadKitsFromDirectory();
+
     }
 
     @Override

@@ -53,13 +53,11 @@ public class SaveButton extends GUIButton {
 
           kit.getItems().clear();
 
-          for (ItemStack item : this.from.getInventory().getContents()) {
-            if(item != null) {
+          for (ItemStack item : this.from.getInventory().getContents()) 
+            if(item != null)
                 kit.addItem(item);
-            }
-          }
         
-        
+         
           e.getWhoClicked().closeInventory();
 
           kit.save();

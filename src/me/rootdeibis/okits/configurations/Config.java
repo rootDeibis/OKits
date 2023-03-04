@@ -92,6 +92,17 @@ public class Config {
         return get().getStringList("editor-gui.frozen-button.lore");
     }
 
+    public static String getFrozenGUITitle() {
+        return get().getString("frozen-gui.title");
+    }
+
+    public static String getButtonDisplayNameFrozen(String name) {
+        return get().getString("frozen-gui." + name + "-button.displayname");
+    }
+    
+    public static String getButtonLoreFrozen(String name) {
+        return transformToString("frozen-gui." + name + "-button.lore");
+    }
     private static String transformToString(String path) {
         return get().isList(path) ? String.join("\n", get().getStringList(path)) : get().getString(path);
     }

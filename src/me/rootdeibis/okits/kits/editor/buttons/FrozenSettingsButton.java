@@ -1,12 +1,14 @@
 package me.rootdeibis.okits.kits.editor.buttons;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import me.rootdeibis.mirandalib.utils.ColorUtils;
 import me.rootdeibis.mirandalib.utils.Functions;
 import me.rootdeibis.mirandalib.utils.guifactory.GUIButton;
 import me.rootdeibis.okits.configurations.Config;
+import me.rootdeibis.okits.kits.editor.menus.FreezeMenu;
 import me.rootdeibis.okits.kits.editor.menus.PrincipalMenu;
 
 public class FrozenSettingsButton extends GUIButton {
@@ -38,7 +40,7 @@ public class FrozenSettingsButton extends GUIButton {
     private Functions.Function<InventoryClickEvent> onclick() {
         return (e) -> {
 
-            this.from.getKit();
+            new FreezeMenu(this.from).open((Player) e.getWhoClicked());
         };
     }
 

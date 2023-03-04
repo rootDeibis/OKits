@@ -53,6 +53,20 @@ public class TimeTool {
         return calendar.getTime();
     }
 
+    public static String formatDate(int... values) {
+
+        StringBuilder str = new StringBuilder();
+
+        if(values.length >= 1 && values[0] != 0) str.append(values[0] + "mo ");
+        if(values.length >= 2 && values[1] != 0) str.append(values[1] + "d ");
+        if(values.length >= 3 && values[2] != 0) str.append(values[2] + "h ");
+        if(values.length >= 4 && values[3] != 0) str.append(values[3] + "m ");
+        if(values.length >= 5 && values[4] != 0) str.append(values[4] + "s ");
+
+        return str.toString();
+
+    }
+
     public static String format(long d) {
         String str = "%d %h %m %s";
         Date date = new Date(d);

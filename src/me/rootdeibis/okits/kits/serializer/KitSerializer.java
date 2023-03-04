@@ -35,6 +35,10 @@ public class KitSerializer {
 
             config.set("encoded-items", encodeItems(kit));
 
+            if(kit.hasFrozenTime()) {
+                
+            }
+
 
             config.save(file);
             
