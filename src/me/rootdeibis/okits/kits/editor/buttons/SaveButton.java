@@ -1,6 +1,5 @@
 package me.rootdeibis.okits.kits.editor.buttons;
 
-import java.util.function.Predicate;
 
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -12,7 +11,6 @@ import me.rootdeibis.mirandalib.utils.guifactory.GUIButton;
 import me.rootdeibis.okits.configurations.Config;
 import me.rootdeibis.okits.configurations.MessageUtils;
 import me.rootdeibis.okits.kits.Kit;
-import me.rootdeibis.okits.kits.KitManager;
 import me.rootdeibis.okits.kits.editor.menus.PrincipalMenu;
 
 public class SaveButton extends GUIButton {
@@ -50,9 +48,8 @@ public class SaveButton extends GUIButton {
 
           this.from.removeButtons();
 
-          Predicate<Kit> predication = kt -> kt.getName().equalsIgnoreCase(this.from.getKitName());
 
-          Kit kit = KitManager.getKits().has(predication) ? KitManager.getKits().find(predication) : KitManager.create(this.from.getKitName());
+          Kit kit = this.from.getKit();
 
           kit.getItems().clear();
 
@@ -62,13 +59,12 @@ public class SaveButton extends GUIButton {
             }
           }
         
-
         
           e.getWhoClicked().closeInventory();
 
           kit.save();
 
-          MessageUtils.sendTo(e.getWhoClicked(), Config.getCreatedMessage(), Config.ConfigPlacelholders, this.from.getKitName());
+          MessageUtils.sendTo(e.getWhoClicked(), Config.getCreatedMessage(), Config.ConfigPlacelholders, this.from.getKit().getName());
         };
     }
 

@@ -21,11 +21,13 @@ public class Kit {
 
     private final String name;
     private List<String> description = new ArrayList<>();
-    private String frozen_time_format = "1h";
 
     private final List<ItemStack> items = new ArrayList<ItemStack>();
 
     private UUID kitUUID;
+
+    private int[] frozenTimes = {};
+
 
     public Kit(String kitName, List<String> kitDescription) {
         this.name = kitName;
@@ -68,12 +70,53 @@ public class Kit {
     }
 
 
-    public void setFrozenTimeFormat(String format) {
-        frozen_time_format = format;
+    public void setMonths(int months) {
+        frozenTimes[0] = months;
     }
 
-    public String getFrozenTimeFormat() {
-        return frozen_time_format;
+    public void setDays(int days) {
+        frozenTimes[1] = days;
+    }
+
+    public void setHours(int hours) {
+        frozenTimes[2] = hours;
+    }
+    
+    public void setMinutes(int minutes) {
+        frozenTimes[3] = minutes;
+    }
+
+    
+    public void setSeconds(int seconds) {
+        frozenTimes[4] = seconds;
+    }
+
+    public int getMonths() {
+        return frozenTimes[0];
+    }
+
+    public int getDays() {
+        return frozenTimes[1];
+    }
+
+    public int getHours() {
+        return frozenTimes[2];
+    }
+
+    public int getMinutes() {
+        return frozenTimes[3];
+    }
+
+    public int getSeconds() {
+        return frozenTimes[4];
+    }
+
+    public int[] getFrozenTimes() {
+        return frozenTimes;
+    }
+
+    public boolean hasFrozenTime() {
+        return frozenTimes.length > 0;
     }
 
 
@@ -117,10 +160,9 @@ public class Kit {
 
         MessageUtils.sendTo(player, Config.getRecievedMessage(), Config.ConfigPlacelholders, this.name);
 
-        if(this.getFrozenTimeFormat() != null || this.getFrozenTimeFormat().length() > 0) {
+        if(this.hasFrozenTime()) {
            
-
-            pk.edit(this.getKitUUID(), TimeTool.addToDate(this.getFrozenTimeFormat()).getTime());
+            pk.edit(this.getKitUUID(), TimeTool.addToDate(this.getFrozenTimes()).getTime());
 
             pk.save();
         }

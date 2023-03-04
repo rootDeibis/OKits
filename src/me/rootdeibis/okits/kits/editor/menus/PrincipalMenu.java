@@ -1,66 +1,56 @@
 package me.rootdeibis.okits.kits.editor.menus;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.function.Predicate;
 
-import org.bukkit.inventory.ItemStack;
 
 import me.rootdeibis.mirandalib.utils.ColorUtils;
 import me.rootdeibis.mirandalib.utils.PlaceholderFormat;
 import me.rootdeibis.mirandalib.utils.guifactory.GUIMenu;
 import me.rootdeibis.okits.configurations.Config;
+import me.rootdeibis.okits.kits.Kit;
+import me.rootdeibis.okits.kits.KitManager;
 import me.rootdeibis.okits.kits.editor.buttons.CancelButton;
+import me.rootdeibis.okits.kits.editor.buttons.FrozenSettingsButton;
 import me.rootdeibis.okits.kits.editor.buttons.SaveButton;
 
 public class PrincipalMenu extends GUIMenu {
 
-    private final String kitName;
 
-    private List<ItemStack> items = new ArrayList<>();
+    private final Kit kit;
 
-    public PrincipalMenu(String kitName) {
-        super(PrincipalMenu.getFormatedTitle(kitName), 6);
 
-        this.setEditable(true);
+    public PrincipalMenu(String name) {
+        super(PrincipalMenu.getFormatedTitle(name), 6);
 
-        this.kitName = kitName;
+        Predicate<Kit> predication = k -> k.getName().equalsIgnoreCase(name);
 
-        this.loadButtons();
-        
-    }
-
-    public PrincipalMenu(String kitName, List<ItemStack> items) {
-        super(PrincipalMenu.getFormatedTitle(kitName), 6);
+        this.kit = KitManager.getKits().has(predication) ? KitManager.getKits().find(predication) : KitManager.create(name);
 
         this.setEditable(true);
-
-        this.kitName = kitName;
-        this.items = items;
-
-        items.forEach(item -> this.getInventory().addItem(item));
-
-
         this.loadButtons();
-        
+
+
+        if(kit.getItems().size() > 0) {
+            kit.getItems().forEach(item -> this.getInventory().addItem(item));
+        }
     }
 
 
     private void loadButtons() {
         this.addButton(new SaveButton(this));
         this.addButton(new CancelButton());
+        this.addButton(new FrozenSettingsButton(this));
     }
 
-    public String getKitName() {
-        return kitName;
-    }
-
-    public List<ItemStack> getItems() {
-        return items;
+    public Kit getKit() {
+        return kit;
     }
 
     private static String getFormatedTitle(String kit) {
         return ColorUtils.parse(PlaceholderFormat.parseParams(Config.getEditorGUITitle(), kit));
     }
+
+
 
 
 

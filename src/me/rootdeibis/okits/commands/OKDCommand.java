@@ -64,7 +64,7 @@ public class OKDCommand extends MirandaCommand{
 
                         if(KitManager.getKits().has(kit -> kit.getName().equalsIgnoreCase(kitName))) {
 
-                            new PrincipalMenu(kitName, KitManager.getKits().find(kit -> kit.getName().equalsIgnoreCase(kitName)).getItems()).open(player);
+                            new PrincipalMenu(kitName).open(player);
                             
                         } else {
                             MessageUtils.sendTo(sender, Config.getDoesNotExistMessage(),Config.ConfigPlacelholders, kitName);

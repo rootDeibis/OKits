@@ -84,6 +84,14 @@ public class Config {
         return get().getStringList("editor-gui.cancel-button.lore");
     }
 
+    public static String getEditorFrozenBtnDisplayName() {
+        return get().getString("editor-gui.frozen-button.displayname");
+    }
+
+    public static List<String> getEditorFrozenBtnLore() {
+        return get().getStringList("editor-gui.frozen-button.lore");
+    }
+
     private static String transformToString(String path) {
         return get().isList(path) ? String.join("\n", get().getStringList(path)) : get().getString(path);
     }

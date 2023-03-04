@@ -28,3 +28,7 @@ editor-gui:
     displayname: "&cCancel"
     lore:
       - "&7Click here to cancel"
+  frozen-button:
+    displayname: "&cFrozen Settings"
+    lore:
+      - "&7Click to open frozen settings menu"
