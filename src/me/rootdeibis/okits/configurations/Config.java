@@ -93,17 +93,17 @@ public class Config {
     }
 
     public static String getFrozenGUITitle() {
-        return get().getString("frozen-gui.title");
+        return get().getString("editor-frozen-gui.title");
     }
 
     public static String getButtonDisplayNameFrozen(String name) {
-        return get().getString("frozen-gui." + name + "-button.displayname");
+        return get().getString("editor-frozen-gui." + name + "-button.displayname");
     }
     
-    public static String getButtonLoreFrozen(String name) {
-        return transformToString("frozen-gui." + name + "-button.lore");
+    public static List<String> getButtonLoreFrozen(String name) {
+        return get().getStringList("editor-frozen-gui." + name + "-button.lore");
     }
     private static String transformToString(String path) {
-        return get().isList(path) ? String.join("\n", get().getStringList(path)) : get().getString(path);
+        return get().isList(path) ? String.join("\n&r", get().getStringList(path)) : get().getString(path);
     }
 }

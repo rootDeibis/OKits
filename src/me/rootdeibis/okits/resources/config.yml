@@ -33,26 +33,29 @@ editor-gui:
     lore:
       - "&7Click to open frozen settings menu"
 editor-frozen-gui:
-  title: "&dFrozen Settings (%s)"
-
+  title: "&dFrozen Settings (%s)" 
+  back-button:
+    displayname: "&cBack to editor"
+    lore:
+      - "&7Click here to back to editor"
   add-time-button:
-    title: "&a+"
+    displayname: "&a+"
     lore:
       - "&7Click to add time"
   remove-time-button:
-    title: "&c-"
+    displayname: "&c-"
     lore:
       - "&7Click to remove time"
   months-button:
-    title: "&aMoths"
+    displayname: "&aMoths"
     lore:
       - "&7Current: %s"
   days-button:
-    title: "&aDays"
+    displayname: "&aDays"
     lore:
       - "&7Current: %s"
   hours-button:
-    title: "&aHours"
+    displayname: "&aHours"
     lore:
       - "&7Current: %s"
   minutes-button:
@@ -60,6 +63,6 @@ editor-frozen-gui:
     lore:
       - "&7Current: %s"
   seconds-button:
-    title: "&aSeconds"
+    displayname: "&aSeconds"
     lore:
       - "&7Current: %s"

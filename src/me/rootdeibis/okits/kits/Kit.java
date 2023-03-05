@@ -135,9 +135,13 @@ public class Kit {
     }
 
     public void give(Player player) {
+        this.give(player, false);
+    }
+
+    public void give(Player player, boolean forced) {
         PlayerKit pk = PlayerKitManager.getPlayers().find(p -> p.getUuid() == player.getUniqueId());
 
-        if(!pk.available(this.getKitUUID())) {
+        if(!pk.available(this.getKitUUID()) && !forced) {
 
             MessageUtils.sendTo(player, Config.getFrozenMessage(), Config.ConfigPlacelholders, this.name);
 
@@ -160,7 +164,7 @@ public class Kit {
 
         MessageUtils.sendTo(player, Config.getRecievedMessage(), Config.ConfigPlacelholders, this.name);
 
-        if(this.hasFrozenTime()) {
+        if(this.hasFrozenTime() && !forced) {
            
             pk.edit(this.getKitUUID(), TimeTool.addToDate(this.getFrozenTimes()).getTime());
 
