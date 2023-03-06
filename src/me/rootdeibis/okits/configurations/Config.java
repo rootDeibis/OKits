@@ -60,6 +60,10 @@ public class Config {
         return transformToString("messages.frozen.message");
     }
 
+    public static String getPermissionMessage() {
+        return transformToString("messages.permission.message");
+    }
+
     public static String getResetMessage() {
         return transformToString("messages.reset-kit");
 

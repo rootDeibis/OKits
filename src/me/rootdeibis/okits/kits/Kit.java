@@ -29,11 +29,12 @@ public class Kit {
     private int[] frozenTimes = {};
 
 
+
     public Kit(String kitName, List<String> kitDescription) {
         this.name = kitName;
         this.description = kitDescription;
 
-        kitUUID = UUID.randomUUID();
+        kitUUID = UUID.randomUUID(); 
     }
 
     public Kit(String kitName, List<String> kitDescription, String uuid) {
@@ -50,6 +51,8 @@ public class Kit {
 
         kitUUID = UUID.randomUUID();
     }
+
+
 
 
     public void addItem(ItemStack item) {
@@ -89,6 +92,10 @@ public class Kit {
     
     public void setSeconds(int seconds) {
         frozenTimes[4] = seconds;
+    }
+
+    public void setFrozenFormat(String value) {
+        frozenTimes = TimeTool.formatDateValues(value);
     }
 
     public int getMonths() {
@@ -143,7 +150,13 @@ public class Kit {
 
         if(!pk.available(this.getKitUUID()) && !forced) {
 
-            MessageUtils.sendTo(player, Config.getFrozenMessage(), Config.ConfigPlacelholders, this.name);
+            MessageUtils.sendTo(player, Config.getFrozenMessage(), Config.ConfigPlacelholders, TimeTool.format(pk.getKits().get(this.getKitUUID())));
+
+            return;
+        }
+
+        if(!player.hasPermission(this.getPermission()) && !forced) {
+            MessageUtils.sendTo(player, Config.getPermissionMessage(), Config.ConfigPlacelholders);
 
             return;
         }
@@ -182,6 +195,10 @@ public class Kit {
 
     }
 
+
+    public String getPermission() {
+        return "okits.kit." + this.name;
+    }
 
     private boolean isAvailableSlots(Inventory inv) {
         int availableSlots = inv.getSize();

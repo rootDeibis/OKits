@@ -125,7 +125,6 @@ public class OKitCommand extends MirandaCommand {
 
                             pk.getKits().keySet().forEach(k -> pk.getKits().put(k, new Date().getTime()));
 
-                            
 
 
                             MessageUtils.sendTo(sender, Config.getResetAllMessage(), placeholders);

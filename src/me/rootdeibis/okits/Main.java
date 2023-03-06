@@ -9,6 +9,7 @@ import me.rootdeibis.mirandalib.managers.configuration.FileManager;
 import me.rootdeibis.mirandalib.utils.Logger;
 import me.rootdeibis.mirandalib.utils.guifactory.GUIListenerEvent;
 import me.rootdeibis.okits.commands.okit.OKitCommand;
+import me.rootdeibis.okits.commands.KitsCommand;
 import me.rootdeibis.okits.configurations.Config;
 import me.rootdeibis.okits.kits.KitManager;
 import me.rootdeibis.okits.listeners.PlayerJoinListener;
@@ -32,6 +33,7 @@ public class Main extends JavaPlugin {
         
 
         CommandManager.register(new OKitCommand());
+        CommandManager.register(new KitsCommand());
 
 
         

@@ -18,6 +18,8 @@ messages:
       - ""
       - "&7&m+----------------------+"
     sound: "ENDERDRAGON_GROWL"
+  permission:
+    message: "<prefix> &cYou do not have permissions for this kit."
   frozen: 
     message: "<prefix> &7You cannot claim this kit yet, you must wait &c%s&7."
 editor-gui:

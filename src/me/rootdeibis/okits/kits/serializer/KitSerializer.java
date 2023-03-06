@@ -15,6 +15,7 @@ import org.bukkit.util.io.BukkitObjectOutputStream;
 
 import me.rootdeibis.okits.Main;
 import me.rootdeibis.okits.kits.Kit;
+import me.rootdeibis.okits.kits.TimeTool;
 
 public class KitSerializer {
 
@@ -36,6 +37,10 @@ public class KitSerializer {
             config.set("encoded-items", encodeItems(kit));
 
             if(kit.hasFrozenTime()) {
+                config.set("frozen-format", TimeTool.formatDate(kit.getFrozenTimes()));
+            }
+
+            if(kit.hasFrozenTime()) {
                 
             }
 
@@ -51,6 +56,9 @@ public class KitSerializer {
 
     public static Kit deserealize(FileConfiguration config) {
         Kit kit = new Kit(config.getString("name"), config.getStringList("description"), config.getString("uuid"));
+
+
+        kit.setFrozenFormat(config.getString("frozen-format"));
 
 
         for (ItemStack decodedItem : decodeItems(config.getStringList("encoded-items"))) {

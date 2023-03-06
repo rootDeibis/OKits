@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class TimeTool {
 
-    public static Date addToDate(String format) {
+    public static int[] formatDateValues(String format) {
         String[] types = format.split(" ");
 
         int[] values = {0,0,0,0,0};
@@ -37,7 +37,11 @@ public class TimeTool {
             }
 
         }
-        return addToDate(values);
+        return values;
+    }
+
+    public Date addToDate(String format) {
+        return addToDate(formatDateValues(format));
     }
 
 
