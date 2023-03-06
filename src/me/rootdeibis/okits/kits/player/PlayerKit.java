@@ -87,6 +87,10 @@ public class PlayerKit {
         return this.config;
     }
 
+    public HashMap<UUID, Long> getKits() {
+        return kits;
+    }
+
     public UUID getUuid() {
         return uuid;
     }

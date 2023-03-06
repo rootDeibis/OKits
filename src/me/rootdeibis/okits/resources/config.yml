@@ -8,6 +8,8 @@ messages:
     removed: "<prefix> &cYou have removed the kit &d%s"
     alreadyExist: "<prefix> &cThere is already a kit with the name &7&n%s"
     doesNotExist: "<prefix> &cThe &7&n%s &ckit does not exist"
+    reset-kit: "<prefix> &dThe <kit> <player> kit has been restarted."
+    reset-all: "<prefi> &dThe %s kits were reset."
   recieved:
     message:
       - "&7&m+----------------------+"

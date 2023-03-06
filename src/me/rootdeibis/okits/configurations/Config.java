@@ -60,6 +60,16 @@ public class Config {
         return transformToString("messages.frozen.message");
     }
 
+    public static String getResetMessage() {
+        return transformToString("messages.reset-kit");
+
+    }
+
+    public static String getResetAllMessage() {
+        return transformToString("messages.reset-all");
+
+    }
+
     public static String getFrozenSound() {
         return get().getString("messages.frozen.sound");
     }
